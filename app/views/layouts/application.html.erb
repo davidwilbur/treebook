@@ -41,10 +41,16 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+
 
 <div class="container">
+  <% flash.each do |type, message| %>
+    <div class="alert <%= flash_class(type) %> alert-dismissable">
+      <button type="button" class="close" data-dismess="alert" aria-hidden="true">&times;</button>
+        <%= message %>
+    </div>
+  <% end %>
+
 	<%= yield %>
 </div>
 
