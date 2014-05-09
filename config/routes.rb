@@ -1,7 +1,13 @@
 Treebook::Application.routes.draw do
-  devise_for :users
-  resources :statuses
 
+  devise_for :users
+  devise_scope :user do
+    get "sign_in", to: 'devise/sessions#new', as: :sign_in
+    get "sign_up", to: 'devise/registrations#new', as: :sign_up
+    get "logout",  to: 'devise/sessions#destroy', as: :logout
+  end
+  resources :statuses
+  get 'feed', to: 'statuses#index', as: :feed
   root to: 'statuses#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
