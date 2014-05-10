@@ -7,6 +7,7 @@ gem 'rails', '4.0.1'
 
 gem 'devise'
 gem 'simple_form'
+gem 'rails_12factor'
 
 group :production do
 	gem 'pg'
