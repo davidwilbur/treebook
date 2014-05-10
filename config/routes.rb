@@ -1,5 +1,6 @@
 Treebook::Application.routes.draw do
 
+  get "profiles/show"
   devise_for :users
   devise_scope :user do
     get "sign_in", to: 'devise/sessions#new', as: :sign_in
