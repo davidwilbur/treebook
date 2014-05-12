@@ -8,6 +8,7 @@ gem 'rails', '4.0.1'
 gem 'devise'
 gem 'simple_form'
 gem 'state_machine'
+gem 'draper'
 gem 'rails_12factor'
 
 group :test do
