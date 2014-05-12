@@ -5,6 +5,7 @@ class UserFriendshipsController < ApplicationController
 
 	def index
 		@user_friendship = current_user.user_friendships.all
+		respond_with @user_friendships
 	end
 
 	def accept
@@ -46,7 +47,7 @@ class UserFriendshipsController < ApplicationController
 						flash[:success] = "Friend request sent."
 						redirect_to profile_path(@friend)
 					end
-					format.json { render json: @user_friendship.to_jason }
+					format.json { render json: @user_friendship.to_json }
 				end
 			end
 			
