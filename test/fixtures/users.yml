@@ -3,7 +3,7 @@ jason:
   last_name: "Seifer"
   email: "jason@teamtreehouse.com"
   profile_name: "jasonseifer"
-  encrypted_password: "password"
+  encrypted_password: "$2a$10$Fh/Hm8RxDsuPTeBUr6864.GARlcmt7zF2WspaXGr3BIv2C27N.osq"
 
 
 jim:
@@ -11,12 +11,12 @@ jim:
   last_name: "Hoskins"
   email: "jim@teamtreehouse.com"
   profile_name: "jimhoskins"
-  encrypted_password: "password"
+  
 
 mike:
   first_name: "Mike"
   last_name: "the frog"
   email: "mike@frog.com"
   profile_name: "mikethefrog"
-  encrypted_password: "password"
+  
 

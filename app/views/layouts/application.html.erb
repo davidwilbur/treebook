@@ -28,9 +28,10 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li><%= link_to 'Friends', user_friendships_path %></li>
           <li><%= link_to current_user.full_name, 
                   edit_user_registration_path %></li>
-          <li><%= link_to "Log Out", logout_path %>
+          <li><%= link_to "Log Out", logout_path %></li>
         <% else %>
           <li><%= link_to "Sign Up", sign_up_path %></li>
           <li><%= link_to "Log in", sign_in_path %></li>
