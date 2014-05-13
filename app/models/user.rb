@@ -18,6 +18,29 @@ class User < ActiveRecord::Base
                                       
   has_many :pending_friends, through: :pending_user_friendships, source: :friend
 
+  has_many :requested_user_friendships, 
+                                      -> { where state: 'requested' },
+                                      class_name: 'UserFriendship',
+                                      foreign_key: :user_id
+                                      #conditions: { state: 'pending' }
+  has_many :requested_friends, through: :requested_user_friendships, source: :friend
+
+  has_many :blocked_user_friendships, 
+                                      -> { where state: 'blocked' },
+                                      class_name: 'UserFriendship',
+                                      foreign_key: :user_id
+                                      #conditions: { state: 'pending' }
+                                      
+  has_many :blocked_friends, through: :blocked_user_friendships, source: :friend
+
+  has_many :accepted_user_friendships, 
+                                      -> { where state: 'accepted' },
+                                      class_name: 'UserFriendship',
+                                      foreign_key: :user_id
+                                      #conditions: { state: 'pending' }
+                                      
+  has_many :accepted_friends, through: :accepted_user_friendships, source: :friend
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :profile_name, presence: true, uniqueness: true,
@@ -40,5 +63,9 @@ class User < ActiveRecord::Base
     hash = Digest::MD5.hexdigest(downcased_email)
 
     "http://gravatar.com/avatar/#{hash}"
+  end
+
+  def has_blocked?(other_user)
+    blocked_friends.include?(other_user)
   end
 end
