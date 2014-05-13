@@ -10,7 +10,12 @@ gem 'simple_form'
 gem 'state_machine'
 gem 'draper'
 gem 'js-routes'
+gem 'paperclip'
 gem 'rails_12factor'
+
+group :development do
+	gem 'thin'
+end
 
 group :test do
 	gem 'shoulda'

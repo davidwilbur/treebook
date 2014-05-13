@@ -3,7 +3,7 @@
 <p>
   <b>Name:</b>
   <%= @status.user.full_name %></br>
-  <%= @status.user_id %>
+  
   
 </p>
 
@@ -11,6 +11,13 @@
   <strong>Content:</strong>
   <%= @status.content %>
 </p>
+
+<hr/>
+
+
+	<%= status_document_link @status %>
+	<hr/>
+
 
 <%= link_to 'Edit', edit_status_path(@status) %> |
 <%= link_to 'Back', statuses_path %>

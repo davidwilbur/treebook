@@ -6,7 +6,7 @@ class StatusesController < ApplicationController
   # GET /statuses
   # GET /statuses.json
   def index
-    @statuses = Status.all
+    @statuses = Status.order('created_at desc').all
   end
 
   # GET /statuses/1
@@ -16,7 +16,14 @@ class StatusesController < ApplicationController
 
   # GET /statuses/new
   def new
-    @status = Status.new
+    @status = current_user.statuses.new
+    @status.build_document
+
+    #don't know what this is doing yet. it was added between videos.
+    #respond_to do |format|
+      #format.html
+      #format.json { render json: @status }
+    #end
   end
 
   # GET /statuses/1/edit
@@ -78,6 +85,6 @@ class StatusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def status_params
-      params.require(:status).permit(:name, :user_id, :content) if params[:status]
+      params.require(:status).permit(:user_id, :content, document_attributes: [:attachment, :remove_attachment] ) if params[:status]
     end
 end
