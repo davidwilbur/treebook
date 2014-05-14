@@ -48,7 +48,9 @@ class User < ActiveRecord::Base
   					with: /\A[a-zA-Z0-9_-]+\z/,
   					message: 'Must be formatted correctly.'
   				}
-  
+          
+  has_attached_file :avatar
+
   def full_name
   	first_name + " " + last_name
   end
