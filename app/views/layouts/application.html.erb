@@ -46,6 +46,7 @@
 
 
 <div class="container">
+  <%= render_breadcrumbs %>
   <% flash.each do |type, message| %>
     <div class="alert <%= flash_class(type) %> alert-dismissable">
       <button type="button" class="close" data-dismess="alert" aria-hidden="true">&times;</button>

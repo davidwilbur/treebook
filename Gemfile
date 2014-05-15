@@ -11,6 +11,7 @@ gem 'state_machine'
 gem 'draper'
 gem 'js-routes'
 gem 'paperclip'
+gem 'twitter-bootstrap-rails'
 gem 'rails_12factor'
 
 group :development do

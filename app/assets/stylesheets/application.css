@@ -16,6 +16,10 @@ body {
 	padding-top: 40px;
 }
 
+.breadcrumb {
+	margin-top: 20px;
+}
+
 .well { 
 	margin-top: 25px;
 }

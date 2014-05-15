@@ -2,30 +2,38 @@ class AlbumsController < ApplicationController
   before_filter :authenticate_user!, only: [:create, :new, :edit, :update, :destroy]
   before_filter :find_user
   before_filter :find_album, only: [:edit, :update, :destroy, :show]
+  before_filter :add_breadcrumbs
 
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all
+    @albums = @user.albums.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @albums }
+    end
   end
 
   # GET /albums/1
   # GET /albums/1.json
   def show
+    redirect_to album_pictures_path(params[:id])
   end
 
   # GET /albums/new
   def new
     @album = current_user.albums.new
 
-    #respond_to do |format|
-     # format.html #new.html.erb
-     # format.json { render json: @album }
-    #end
+    respond_to do |format|
+      format.html #new.html.erb
+      format.json { render json: @album }
+    end
   end
 
   # GET /albums/1/edit
   def edit
+    add_breadcrumb "Editing Album"
   end
 
   # POST /albums
@@ -73,6 +81,11 @@ class AlbumsController < ApplicationController
   end
 
   private
+
+    def add_breadcrumbs
+      add_breadcrumb @user, profile_path(@user)
+      add_breadcrumb "Albums", albums_path
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_album
       @album = Album.find(params[:id])

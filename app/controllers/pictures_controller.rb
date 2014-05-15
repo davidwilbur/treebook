@@ -2,17 +2,29 @@ class PicturesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_filter :find_user
   before_filter :find_album
+  before_filter :add_breadcrumbs
   before_filter :find_picture, only: [:edit, :update, :show, :destroy]
 
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all
+    @pictures = @album.pictures.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @pictures }
+    end
   end
 
   # GET /pictures/1
   # GET /pictures/1.json
   def show
+    @picture = @album.pictures.find(params[:id])
+    add_breadcrumb @picture.caption
+    respond_to do |format|
+      format.html
+      format.json { render json: @picture }
+    end
   end
 
   # GET /pictures/new
@@ -74,6 +86,12 @@ class PicturesController < ApplicationController
   end
 
   private
+
+    def add_breadcrumbs
+      add_breadcrumb @user.first_name, profile_path(@user)
+      add_breadcrumb "Albums", albums_path
+      add_breadcrumb "Pictures", album_pictures_path(@album)
+    end
 
     def find_user
       @user = User.find_by_profile_name(params[:profile_name])
