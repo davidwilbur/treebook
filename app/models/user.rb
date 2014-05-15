@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :albums
+  has_many :pictures
+
   has_many :statuses
   has_many :user_friendships
   has_many :friends, -> { where user_friendships: { state: 'accepted' }},
